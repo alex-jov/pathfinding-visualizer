@@ -1,3 +1,5 @@
+import { algorithms } from '../algorithms';
+
 export default function Controls({
   algorithm,
   setAlgorithm,
@@ -26,8 +28,9 @@ export default function Controls({
                    text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 cursor-pointer
                    transition-colors duration-300"
       >
-        <option value="dijkstra">Dijkstra&apos;s Algorithm</option>
-        <option value="astar">A* (A-Star)</option>
+        {Object.entries(algorithms).map(([key, { info }]) => (
+          <option key={key} value={key}>{info.name}</option>
+        ))}
       </select>
 
       {/* Action buttons */}

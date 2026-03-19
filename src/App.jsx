@@ -5,8 +5,7 @@ import Legend from './components/Legend';
 import AlgorithmInfo from './components/AlgorithmInfo';
 import Header from './components/Header';
 import { CellType, createGrid, generateMaze } from './utils/grid';
-import { dijkstra } from './algorithms/dijkstra';
-import { astar } from './algorithms/astar';
+import { algorithms } from './algorithms';
 
 const ROWS = 20;
 const COLS = 40;
@@ -18,7 +17,7 @@ function cloneGrid(grid) {
 }
 
 export default function App() {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
   const [grid, setGrid] = useState(() => createGrid(ROWS, COLS, DEFAULT_START, DEFAULT_END));
   const [startPos, setStartPos] = useState(DEFAULT_START);
   const [endPos, setEndPos] = useState(DEFAULT_END);
@@ -273,7 +272,7 @@ export default function App() {
     const cleanVisual = cloneGrid(wallGrid);
     setGrid(cleanVisual);
 
-    const algoFn = algorithm === 'astar' ? astar : dijkstra;
+    const algoFn = algorithms[algorithm].fn;
     const steps = algoFn(wallGrid, startPos, endPos, allowDiagonal);
     stepsRef.current = steps;
     stepIndexRef.current = 0;

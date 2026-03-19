@@ -1,26 +1,24 @@
-const algorithmData = {
-  dijkstra: {
-    name: "Dijkstra's Algorithm",
-    description: 'Explores all directions equally, guaranteeing the shortest path by always expanding the nearest unvisited node.',
-    complexity: { time: 'O(V + E log V)', space: 'O(V)' },
-    heuristic: 'None — explores uniformly in all directions.',
-  },
-  astar: {
-    name: 'A* (A-Star)',
-    description: 'Uses a heuristic to guide search toward the goal, often visiting fewer nodes than Dijkstra while still guaranteeing the shortest path.',
-    complexity: { time: 'O(E log V)', space: 'O(V)' },
-    heuristic: 'Manhattan distance (4-dir) or Octile distance (8-dir). Estimates remaining cost to goal without overestimating, ensuring optimality.',
-  },
-};
+import { algorithms } from '../algorithms';
 
 export default function AlgorithmInfo({ algorithm, visitedCount, pathLength, isComplete, noPath }) {
-  const info = algorithmData[algorithm];
+  const { info } = algorithms[algorithm];
 
   return (
     <div className="bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700/50 rounded-xl p-4 sm:p-5 transition-colors duration-300">
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
         <div>
-          <h2 className="text-lg font-semibold mb-0.5">{info.name}</h2>
+          <div className="flex items-center gap-2 mb-0.5">
+            <h2 className="text-lg font-semibold">{info.name}</h2>
+            {info.guaranteesShortestPath ? (
+              <span className="text-[10px] font-medium px-1.5 py-0.5 rounded bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-400">
+                Optimal
+              </span>
+            ) : (
+              <span className="text-[10px] font-medium px-1.5 py-0.5 rounded bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-400">
+                Not optimal
+              </span>
+            )}
+          </div>
           <p className="text-sm text-gray-500 dark:text-gray-400">{info.description}</p>
         </div>
         <div className="flex items-center gap-4 shrink-0">
