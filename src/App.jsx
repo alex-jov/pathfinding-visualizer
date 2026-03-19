@@ -22,7 +22,8 @@ export default function App() {
   const [startPos, setStartPos] = useState(DEFAULT_START);
   const [endPos, setEndPos] = useState(DEFAULT_END);
   const [algorithm, setAlgorithm] = useState('dijkstra');
-  const [speed, setSpeed] = useState(50);
+  const [speed, setSpeed] = useState(80);
+  const [mazeDensity, setMazeDensity] = useState(30);
   const [isRunning, setIsRunning] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
@@ -164,7 +165,7 @@ export default function App() {
   const handleGenerateMaze = useCallback(() => {
     if (isRunning) return;
     resetPath();
-    const walls = generateMaze(ROWS, COLS, startPos, endPos);
+    const walls = generateMaze(ROWS, COLS, startPos, endPos, mazeDensity / 100);
     setGrid(() => {
       const newGrid = createGrid(ROWS, COLS, startPos, endPos);
       for (const key of walls) {
@@ -175,7 +176,7 @@ export default function App() {
       }
       return newGrid;
     });
-  }, [isRunning, startPos, endPos, resetPath]);
+  }, [isRunning, startPos, endPos, resetPath, mazeDensity]);
 
   const animateSteps = useCallback((steps, startIdx) => {
     cancelRef.current = false;
@@ -343,6 +344,8 @@ export default function App() {
           onReset={resetPath}
           onClearGrid={clearGrid}
           onGenerateMaze={handleGenerateMaze}
+          mazeDensity={mazeDensity}
+          setMazeDensity={setMazeDensity}
           allowDiagonal={allowDiagonal}
           setAllowDiagonal={setAllowDiagonal}
           isComplete={isComplete}

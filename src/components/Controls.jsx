@@ -13,6 +13,8 @@ export default function Controls({
   onReset,
   onClearGrid,
   onGenerateMaze,
+  mazeDensity,
+  setMazeDensity,
   allowDiagonal,
   setAllowDiagonal,
   isComplete,
@@ -92,16 +94,6 @@ export default function Controls({
         >
           Clear
         </button>
-
-        <button
-          onClick={onGenerateMaze}
-          disabled={isRunning}
-          className="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 px-4 py-2
-                     rounded-lg text-sm font-medium transition-colors shadow-sm disabled:opacity-50
-                     disabled:cursor-not-allowed"
-        >
-          Maze
-        </button>
       </div>
 
       {/* Speed slider */}
@@ -115,6 +107,30 @@ export default function Controls({
           onChange={(e) => setSpeed(Number(e.target.value))}
           className="w-20 sm:w-28 accent-blue-500"
         />
+      </div>
+
+      {/* Maze density + generate */}
+      <div className="flex items-center gap-2">
+        <label className="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap">Walls</label>
+        <input
+          type="range"
+          min="5"
+          max="60"
+          value={mazeDensity}
+          onChange={(e) => setMazeDensity(Number(e.target.value))}
+          disabled={isRunning}
+          className="w-16 sm:w-24 accent-blue-500 disabled:opacity-50"
+        />
+        <span className="text-xs text-gray-400 dark:text-gray-500 w-8 tabular-nums">{mazeDensity}%</span>
+        <button
+          onClick={onGenerateMaze}
+          disabled={isRunning}
+          className="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 px-3 py-2
+                     rounded-lg text-sm font-medium transition-colors shadow-sm disabled:opacity-50
+                     disabled:cursor-not-allowed"
+        >
+          Maze
+        </button>
       </div>
 
       {/* Diagonal toggle */}

@@ -13,114 +13,125 @@ body {
     transform: scale(0.3);
     background-color: #60a5fa;
     border-radius: 50%;
+    opacity: 0.6;
   }
   50% {
-    transform: scale(1.15);
-    background-color: #6366f1;
-    border-radius: 30%;
+    transform: scale(1.12);
+    background-color: #818cf8;
+    border-radius: 25%;
+    opacity: 1;
   }
   100% {
     transform: scale(1);
-    background-color: #818cf8;
+    background-color: #6366f1;
     border-radius: 0;
+    opacity: 1;
   }
 }
 
 @keyframes frontierPulse {
   0% {
     transform: scale(0.3);
-    background-color: #06b6d4;
+    background-color: #22d3ee;
     border-radius: 50%;
+    opacity: 0.5;
   }
   50% {
-    transform: scale(1.2);
+    transform: scale(1.15);
     background-color: #38bdf8;
-    border-radius: 25%;
+    border-radius: 20%;
+    opacity: 1;
   }
   100% {
     transform: scale(1);
     background-color: #38bdf8;
     border-radius: 0;
+    opacity: 1;
   }
 }
 
 @keyframes pathGlow {
   0% {
-    transform: scale(0.5);
+    transform: scale(0.4);
     background-color: #f59e0b;
     border-radius: 50%;
-    box-shadow: 0 0 8px rgba(251, 191, 36, 0.6);
+    box-shadow: 0 0 10px rgba(251, 191, 36, 0.7);
   }
   50% {
-    transform: scale(1.25);
+    transform: scale(1.2);
     background-color: #fbbf24;
-    border-radius: 20%;
-    box-shadow: 0 0 16px rgba(251, 191, 36, 0.8);
+    border-radius: 15%;
+    box-shadow: 0 0 18px rgba(251, 191, 36, 0.9);
   }
   100% {
     transform: scale(1);
     background-color: #fbbf24;
     border-radius: 0;
-    box-shadow: 0 0 6px rgba(251, 191, 36, 0.4);
+    box-shadow: 0 0 8px rgba(251, 191, 36, 0.4);
   }
 }
 
 @keyframes wallDrop {
   0% {
-    transform: scale(0.6);
+    transform: scale(0.5);
     border-radius: 40%;
+    opacity: 0.7;
   }
-  60% {
-    transform: scale(1.1);
-    border-radius: 10%;
+  70% {
+    transform: scale(1.08);
+    border-radius: 8%;
+    opacity: 1;
   }
   100% {
     transform: scale(1);
     border-radius: 0;
+    opacity: 1;
   }
 }
 
 .cell-visited {
-  animation: visitedPop 0.4s ease-out forwards;
+  animation: visitedPop 0.35s ease-out forwards;
 }
 
 .cell-frontier {
-  animation: frontierPulse 0.4s ease-out forwards;
+  animation: frontierPulse 0.35s ease-out forwards;
 }
 
 .cell-path {
-  animation: pathGlow 0.5s ease-out forwards;
+  animation: pathGlow 0.45s ease-out forwards;
 }
 
 .cell-wall {
-  animation: wallDrop 0.25s ease-out forwards;
-  background-color: #1e293b;
+  animation: wallDrop 0.2s ease-out forwards;
+  background-color: #334155;
 }
 
 :where(.dark) .cell-wall {
-  background-color: #cbd5e1;
+  background-color: #94a3b8;
 }
 
 .cell-start {
   background-color: #059669;
   border-radius: 50%;
-  transform: scale(0.85);
-  box-shadow: 0 0 8px rgba(5, 150, 105, 0.5);
+  transform: scale(0.8);
+  box-shadow: 0 0 10px rgba(5, 150, 105, 0.6);
+  transition: box-shadow 0.3s;
 }
 
 :where(.dark) .cell-start {
   background-color: #34d399;
-  box-shadow: 0 0 8px rgba(52, 211, 153, 0.5);
+  box-shadow: 0 0 10px rgba(52, 211, 153, 0.6);
 }
 
 .cell-end {
   background-color: #dc2626;
   border-radius: 50%;
-  transform: scale(0.85);
-  box-shadow: 0 0 8px rgba(220, 38, 38, 0.5);
+  transform: scale(0.8);
+  box-shadow: 0 0 10px rgba(220, 38, 38, 0.6);
+  transition: box-shadow 0.3s;
 }
 
 :where(.dark) .cell-end {
   background-color: #f87171;
-  box-shadow: 0 0 8px rgba(248, 113, 113, 0.5);
+  box-shadow: 0 0 10px rgba(248, 113, 113, 0.6);
 }

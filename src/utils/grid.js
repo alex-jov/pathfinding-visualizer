@@ -74,14 +74,22 @@ export function heuristic(a, b, allowDiagonal) {
   return Math.abs(a.row - b.row) + Math.abs(a.col - b.col);
 }
 
-export function generateMaze(rows, cols, startPos, endPos) {
+export function generateMaze(rows, cols, startPos, endPos, density = 0.3) {
   const walls = new Set();
-  // Recursive division-style random maze
+  const protect = new Set();
+  // Protect a small radius around start and end so they're never boxed in
+  for (const pos of [startPos, endPos]) {
+    for (let dr = -1; dr <= 1; dr++) {
+      for (let dc = -1; dc <= 1; dc++) {
+        protect.add(`${pos.row + dr},${pos.col + dc}`);
+      }
+    }
+  }
+
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < cols; c++) {
-      if (r === startPos.row && c === startPos.col) continue;
-      if (r === endPos.row && c === endPos.col) continue;
-      if (Math.random() < 0.3) {
+      if (protect.has(`${r},${c}`)) continue;
+      if (Math.random() < density) {
         walls.add(`${r},${c}`);
       }
     }
