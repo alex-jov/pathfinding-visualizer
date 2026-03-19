@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+/* Grid cell animations */
+@keyframes visitedPop {
+  0% {
+    transform: scale(0.3);
+    background-color: #60a5fa;
+    border-radius: 50%;
+  }
+  50% {
+    transform: scale(1.15);
+    background-color: #6366f1;
+    border-radius: 30%;
+  }
+  100% {
+    transform: scale(1);
+    background-color: #818cf8;
+    border-radius: 0;
+  }
+}
+
+@keyframes frontierPulse {
+  0% {
+    transform: scale(0.3);
+    background-color: #06b6d4;
+    border-radius: 50%;
+  }
+  50% {
+    transform: scale(1.2);
+    background-color: #38bdf8;
+    border-radius: 25%;
+  }
+  100% {
+    transform: scale(1);
+    background-color: #38bdf8;
+    border-radius: 0;
+  }
+}
+
+@keyframes pathGlow {
+  0% {
+    transform: scale(0.5);
+    background-color: #f59e0b;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(251, 191, 36, 0.6);
+  }
+  50% {
+    transform: scale(1.25);
+    background-color: #fbbf24;
+    border-radius: 20%;
+    box-shadow: 0 0 16px rgba(251, 191, 36, 0.8);
+  }
+  100% {
+    transform: scale(1);
+    background-color: #fbbf24;
+    border-radius: 0;
+    box-shadow: 0 0 6px rgba(251, 191, 36, 0.4);
+  }
+}
+
+@keyframes wallDrop {
+  0% {
+    transform: scale(0.6);
+    border-radius: 40%;
+  }
+  60% {
+    transform: scale(1.1);
+    border-radius: 10%;
+  }
+  100% {
+    transform: scale(1);
+    border-radius: 0;
+  }
+}
+
+.cell-visited {
+  animation: visitedPop 0.4s ease-out forwards;
+}
+
+.cell-frontier {
+  animation: frontierPulse 0.4s ease-out forwards;
+}
+
+.cell-path {
+  animation: pathGlow 0.5s ease-out forwards;
+}
+
+.cell-wall {
+  animation: wallDrop 0.25s ease-out forwards;
+  background-color: #1e293b;
+}
+
+:where(.dark) .cell-wall {
+  background-color: #cbd5e1;
+}
+
+.cell-start {
+  background-color: #059669;
+  border-radius: 50%;
+  transform: scale(0.85);
+  box-shadow: 0 0 8px rgba(5, 150, 105, 0.5);
+}
+
+:where(.dark) .cell-start {
+  background-color: #34d399;
+  box-shadow: 0 0 8px rgba(52, 211, 153, 0.5);
+}
+
+.cell-end {
+  background-color: #dc2626;
+  border-radius: 50%;
+  transform: scale(0.85);
+  box-shadow: 0 0 8px rgba(220, 38, 38, 0.5);
+}
+
+:where(.dark) .cell-end {
+  background-color: #f87171;
+  box-shadow: 0 0 8px rgba(248, 113, 113, 0.5);
+}
